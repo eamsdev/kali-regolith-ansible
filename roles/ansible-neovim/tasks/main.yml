@@ -39,7 +39,7 @@
     src: ../files/init.vim
     dest: "{{lookup('env', 'HOME')}}/.config/nvim"
 
-- name: Run PlugInstall
+- name: Ensure plugins are up to date
   become_user: kali
   shell: vim +'PlugInstall --sync' +qall &> /dev/null < /dev/tty
 
