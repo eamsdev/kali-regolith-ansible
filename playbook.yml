@@ -4,5 +4,6 @@
   become: true
   roles: 
     - ansible-regolith
+    - ansible-neovim
 
 ...
