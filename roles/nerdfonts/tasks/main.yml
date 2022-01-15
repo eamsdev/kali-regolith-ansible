@@ -1,0 +1,11 @@
+---
+
+- name: Git checkout Nerdfont
+  git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    dest: "/tmp/nerd-fonts"
+
+- name: Install nerd-fonts
+  shell: ./tmp/nerd-fonts/install.sh
+  
+...

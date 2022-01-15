@@ -1,0 +1,8 @@
+---
+
+- name: Ensure Bpytop is installed
+  apt:
+    name: bpytop
+    state: present
+
+...

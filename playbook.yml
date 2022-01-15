@@ -4,7 +4,10 @@
   connection: local
   become: true
   roles: 
-    - ansible-regolith
-    - ansible-neovim
+    - regolith
+    - neovim
+    - lsd
+    - bpytop
+    - ohmyzsh
 
 ...
