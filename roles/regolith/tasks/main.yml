@@ -5,6 +5,11 @@
     name: gnome-terminal
     state: present
 
+- name: Change terminal emulator
+  alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/gnome-terminal
+
 - name: Install Regolith repository
   ansible.builtin.apt_repository:
     repo: ppa:regolith-linux/release

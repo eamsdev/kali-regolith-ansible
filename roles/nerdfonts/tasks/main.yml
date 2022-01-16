@@ -3,10 +3,10 @@
 - name: Check if fonts exists
   become_user: kali
   shell: fc-list | grep "JetBrainsMono Nerd Font"
-  register: font_check # grep will return exit code 1 if no match is found
+  register: font_check # grep will return exit code != 1 if no match is found
   ignore_errors: true
 
-- name: Git checkout Nerdfont
+- name: Checkout Nerdfont
   git:
     repo: https://github.com/ryanoasis/nerd-fonts.git
     dest: "/tmp/nerd-fonts"
