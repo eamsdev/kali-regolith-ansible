@@ -7,17 +7,24 @@
       - libreadline-dev
     state: present
 
+- name: Check if nnn exists
+  stat:
+    path: /usr/bin/nnn
+  register: nnn_reg
+
 - name: Clone nnn
   become_user: kali
   git: 
     repo: https://github.com/jarun/nnn.git
     dest: /tmp/nnn
+  when: not nnn_reg.stat.exists
 
 - name: Build nnn with icons enabled
   make:
     chdir: /tmp/nnn
     params:
       O_NERD: 1
+  when: not nnn_reg.stat.exists
   
 - name: Copy nnn to bin dir
   copy:
@@ -25,5 +32,6 @@
     src: /tmp/nnn/nnn
     dest: /usr/bin
     mode: u+x,g+x,o+x
+  when: not nnn_reg.stat.exists
 
 ...
