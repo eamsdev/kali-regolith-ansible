@@ -1,5 +1,10 @@
 ---
 
+- name: Install gnome-terminal
+  apt:
+    name: gnome-terminal
+    state: present
+
 - name: Install Regolith repository
   ansible.builtin.apt_repository:
     repo: ppa:regolith-linux/release
@@ -9,5 +14,17 @@
   ansible.builtin.package:
     name: regolith-desktop-standard
     state: present
+
+- name: Ensure regolith config directory exists
+  become_user: kali
+  ansible.builtin.file:
+    path: "{{lookup('env', 'HOME')}}/.config/regolith"
+    state: directory
+
+- name: Override Regolith font configuration
+  become_user: kali
+  copy:
+    src: ../files/Xresources
+    dest: "{{lookup('env', 'HOME')}}/.config/regolith/Xresources"
 
 ...

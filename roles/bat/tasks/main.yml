@@ -1,0 +1,8 @@
+---
+
+- name: Ensure bat (better cat) is installed
+  apt:
+    name: bat
+    state: present
+
+...

@@ -1,3 +1,29 @@
 ---
 
+- name: Ensure compilation dependencies are installed
+  apt:
+    name: 
+      - pkg-config
+      - libreadline-dev
+    state: present
+
+- name: Clone nnn
+  become_user: kali
+  git: 
+    repo: https://github.com/jarun/nnn.git
+    dest: /tmp/nnn
+
+- name: Build nnn with icons enabled
+  make:
+    chdir: /tmp/nnn
+    params:
+      O_NERD: 1
+  
+- name: Copy nnn to bin dir
+  copy:
+    remote_src: true
+    src: /tmp/nnn/nnn
+    dest: /usr/bin
+    mode: u+x,g+x,o+x
+
 ...
