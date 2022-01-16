@@ -1,16 +1,17 @@
 ---
 
+- name: Check if nnn exists
+  stat:
+    path: /usr/bin/nnn
+  register: nnn_reg
+
 - name: Ensure compilation dependencies are installed
   apt:
     name: 
       - pkg-config
       - libreadline-dev
     state: present
-
-- name: Check if nnn exists
-  stat:
-    path: /usr/bin/nnn
-  register: nnn_reg
+  when: not nnn_reg.stat.exists
 
 - name: Clone nnn
   become_user: kali
