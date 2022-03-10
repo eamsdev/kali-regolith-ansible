@@ -7,4 +7,4 @@ Ansible playbook for setting up the following tools on Kali linux:
 - nnn file manager
 - ohmyzsh
 - bpytop
-- neovim
+- neovim (with several productivity plugins)
